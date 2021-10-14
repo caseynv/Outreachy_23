@@ -13,7 +13,7 @@ site = pywikibot.Site('wikidata', 'wikidata')
 
 
 
-def search(site, title):
+def search(site, title, keyword):
     
     params = {'action' : 'wbsearchentities', 'format' : 'json', 'language' : 'en', 'type' : 'item', 'search' : title}
     
@@ -25,10 +25,10 @@ def search(site, title):
     for i in range(0, len(need)):
         qid = need[i]['id']
         labels = need[i]['label']
-        keyword = "fetus"
+        
         if keyword in labels:
             print(qid + " - " + labels)
         
         
-search(site, "Neuromat")
+search(site, "Neuromat", "locomotion")
     

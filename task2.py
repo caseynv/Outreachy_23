@@ -22,27 +22,29 @@ print(text)
 import pywikibot
  
 
-def edit(page):
+def edit(page_):
     site = pywikibot.Site('wikidata', 'wikidata')
     
-    page = pywikibot.Page(site, 'User:Caseyyy0000/Outreachy_1')
+    page = pywikibot.Page(site, page_)
 
     text = page.get()
-    
-    text = text + "\nHello"
-    
-    page.text = text      
-
-    if page.save():
-        print("Saving")
+    try:
         
-    else:
-        print("Error!")
+        text = text + "\nHello"
+        
+        page.text = text      
+        page.text.save
+        
+        print(page.text)
+        
+    except:
+        print("oops!")
+        
     
 
-test = edit(page)       
+edit('User:Caseyyy0000/Outreachy_1')       
 
-print(test)
+
        
     
 
@@ -62,22 +64,21 @@ def printinfo(testid, propid):
     
     name = dict_['labels']['en']
     
-   
-    
     desc = dict_["descriptions"]["en"]
    
     try:
-        print ('Name: ' + name)
+        print ('Name of article: ' + name)
         print(name + ' : ' + desc)
     
         for claim in dict_['claims'][propid]:
             qid_val = claim.getTarget()
             qid_item = qid_val.get()
             prop = qid_val.title()
+            
             qual = qid_item['labels']['en']
             print('The Property is ' + prop + ' - ' + qual)
     except KeyError:
-        print('This is not found in ' + name + '. Create one today!')
+        print('This Qid is not found in ' + name + '. Create one today!')
     
-printinfo('Q41112', 'P310')
-    
+printinfo('Q4115189', 'P310')
+
